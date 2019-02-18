@@ -1,0 +1,29 @@
+{
+    "name": "einfacharchiv/zugferd",
+    "description": "Convert ZUGFeRD XML to PHP objects",
+    "keywords": [
+        "einfachArchiv",
+        "php",
+        "pdf",
+        "xml",
+        "ZUGFeRD"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/einfachArchiv/zugferd",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philip Günther",
+            "email": "support@einfacharchiv.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "einfachArchiv\\ZUGFeRD\\": "src/"
+        }
+    }
+}
