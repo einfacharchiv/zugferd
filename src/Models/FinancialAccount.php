@@ -5,32 +5,39 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class FinancialAccount extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * Returns the IBAN.
      *
-     * @return string
+     * @return string|null
      */
     public function iban()
     {
-        return (string) $this->children()->IBANID;
+        return (string) $this->element->IBANID ?: null;
     }
 
     /**
      * Returns the name.
      *
-     * @return string
+     * @return string|null
      */
     public function name()
     {
-        return (string) $this->children()->AccountName;
+        return (string) $this->element->AccountName ?: null;
     }
 
     /**
      * Returns the id.
      *
-     * @return string
+     * @return string|null
      */
     public function id()
     {
-        return (string) $this->children()->ProprietaryID;
+        return (string) $this->element->ProprietaryID ?: null;
     }
 }

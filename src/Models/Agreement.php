@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Agreement extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The seller.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\TradeParty
@@ -26,9 +33,7 @@ class Agreement extends Model
     public function seller()
     {
         if (is_null($this->seller)) {
-            $seller = $this->children()->SellerTradeParty;
-
-            $this->seller = new TradeParty($seller);
+            $this->seller = new TradeParty($this->element->SellerTradeParty);
         }
 
         return $this->seller;
@@ -42,9 +47,7 @@ class Agreement extends Model
     public function buyer()
     {
         if (is_null($this->buyer)) {
-            $buyer = $this->children()->BuyerTradeParty;
-
-            $this->buyer = new TradeParty($buyer);
+            $this->buyer = new TradeParty($this->element->BuyerTradeParty);
         }
 
         return $this->buyer;

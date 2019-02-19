@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Header extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The issue date.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Date
@@ -21,31 +28,31 @@ class Header extends Model
     /**
      * Returns the id.
      *
-     * @return string
+     * @return string|null
      */
     public function id()
     {
-        return (string) $this->children()->ID;
+        return (string) $this->element->ID ?: null;
     }
 
     /**
      * Returns the name.
      *
-     * @return string
+     * @return string|null
      */
     public function name()
     {
-        return (string) $this->children()->Name;
+        return (string) $this->element->Name ?: null;
     }
 
     /**
      * Returns the type code.
      *
-     * @return string
+     * @return string|null
      */
     public function typeCode()
     {
-        return (string) $this->children()->TypeCode;
+        return (string) $this->element->TypeCode ?: null;
     }
 
     /**
@@ -56,9 +63,7 @@ class Header extends Model
     public function issueDate()
     {
         if (is_null($this->issueDate)) {
-            $issueDate = $this->children()->IssueDateTime;
-
-            $this->issueDate = new Date($issueDate);
+            $this->issueDate = new Date($this->element->IssueDateTime);
         }
 
         return $this->issueDate;
@@ -74,7 +79,7 @@ class Header extends Model
         if (is_null($this->notes)) {
             $notes = [];
 
-            foreach ($this->children()->IncludedNote as $note) {
+            foreach ($this->element->IncludedNote as $note) {
                 $notes[] = new Note($note);
             }
 

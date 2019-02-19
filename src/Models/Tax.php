@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Tax extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The tax.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Amount
@@ -26,9 +33,7 @@ class Tax extends Model
     public function tax()
     {
         if (is_null($this->tax)) {
-            $tax = $this->children()->CalculatedAmount;
-
-            $this->tax = new Amount($tax);
+            $this->tax = new Amount($this->element->CalculatedAmount);
         }
 
         return $this->tax;
@@ -37,11 +42,11 @@ class Tax extends Model
     /**
      * Returns the type code.
      *
-     * @return string
+     * @return string|null
      */
     public function typeCode()
     {
-        return (string) $this->children()->TypeCode;
+        return (string) $this->element->TypeCode ?: null;
     }
 
     /**
@@ -52,9 +57,7 @@ class Tax extends Model
     public function basisAmount()
     {
         if (is_null($this->basisAmount)) {
-            $basisAmount = $this->children()->BasisAmount;
-
-            $this->basisAmount = new Amount($basisAmount);
+            $this->basisAmount = new Amount($this->element->BasisAmount);
         }
 
         return $this->basisAmount;
@@ -63,20 +66,20 @@ class Tax extends Model
     /**
      * Returns the category code.
      *
-     * @return string
+     * @return string|null
      */
     public function categoryCode()
     {
-        return (string) $this->children()->CategoryCode;
+        return (string) $this->element->CategoryCode ?: null;
     }
 
     /**
      * Returns the percentage.
      *
-     * @return float
+     * @return float|null
      */
     public function percentage()
     {
-        return (float) $this->children()->ApplicablePercent;
+        return !empty($this->element->ApplicablePercent) ? (float) $this->element->ApplicablePercent : null;
     }
 }

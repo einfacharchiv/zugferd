@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class PaymentMethod extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The financial account.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\FinancialAccount
@@ -21,21 +28,21 @@ class PaymentMethod extends Model
     /**
      * Returns the type code.
      *
-     * @return string
+     * @return string|null
      */
     public function typeCode()
     {
-        return (string) $this->children()->TypeCode;
+        return (string) $this->element->TypeCode ?: null;
     }
 
     /**
      * Returns the information.
      *
-     * @return string
+     * @return string|null
      */
     public function information()
     {
-        return (string) $this->children()->Information;
+        return (string) $this->element->Information ?: null;
     }
 
     /**
@@ -46,9 +53,7 @@ class PaymentMethod extends Model
     public function financialAccount()
     {
         if (is_null($this->financialAccount)) {
-            $financialAccount = $this->children()->PayeePartyCreditorFinancialAccount;
-
-            $this->financialAccount = new FinancialAccount($financialAccount);
+            $this->financialAccount = new FinancialAccount($this->element->PayeePartyCreditorFinancialAccount);
         }
 
         return $this->financialAccount;
@@ -62,9 +67,7 @@ class PaymentMethod extends Model
     public function financialInstitution()
     {
         if (is_null($this->financialInstitution)) {
-            $financialInstitution = $this->children()->PayeeSpecifiedCreditorFinancialInstitution;
-
-            $this->financialInstitution = new FinancialInstitution($financialInstitution);
+            $this->financialInstitution = new FinancialInstitution($this->element->PayeeSpecifiedCreditorFinancialInstitution);
         }
 
         return $this->financialInstitution;

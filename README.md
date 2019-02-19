@@ -20,12 +20,16 @@ composer require einfacharchiv/zugferd
 
 ## Usage
 
+Converting a ZUGFeRD XML is easy.
+
+If an element is not present, the method returns `null`.
+
 ```php
 $xml = file_get_contents('path/to/ZUGFeRD-invoice.xml');
 
 // Validates the XML against the ZUGFeRD XSD.
-if (\einfachArchiv\ZUGFeRD\Validator::isValid($xml)) {
-    $reader = new \einfachArchiv\ZUGFeRD\Reader($xml);
+if (Validator::isValid($xml)) {
+    $reader = new Reader($xml);
 
     // Available methods
     // Context
@@ -35,9 +39,7 @@ if (\einfachArchiv\ZUGFeRD\Validator::isValid($xml)) {
     $reader->id();
     $reader->name();
     $reader->typeCode();
-    
-    $reader->issueDate()->date();
-    $reader->issueDate()->format();
+    $reader->issueDate()->dateTimeString();
 
     foreach ($reader->notes() as $note) {
         $note->note();
@@ -70,8 +72,7 @@ if (\einfachArchiv\ZUGFeRD\Validator::isValid($xml)) {
     }
 
     // Delivery
-    $reader->occurrenceDate()->date();
-    $reader->occurrenceDate()->format();
+    $reader->occurrenceDate()->dateTimeString();
 
     // Settlement
     $reader->paymentReference();
@@ -131,9 +132,7 @@ if (\einfachArchiv\ZUGFeRD\Validator::isValid($xml)) {
 
     foreach ($reader->paymentTerms() as $paymentTerms) {
         $paymentTerms->description();
-
-        $paymentTerms->dueDate()->date();
-        $paymentTerms->dueDate()->format();
+        $paymentTerms->dueDate()->dateTimeString();
     }
 }
 ```

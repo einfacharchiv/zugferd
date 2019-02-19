@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Trade extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The agreement.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Agreement
@@ -33,9 +40,7 @@ class Trade extends Model
     public function agreement()
     {
         if (is_null($this->agreement)) {
-            $agreement = $this->children()->ApplicableSupplyChainTradeAgreement;
-
-            $this->agreement = new Agreement($agreement);
+            $this->agreement = new Agreement($this->element->ApplicableSupplyChainTradeAgreement);
         }
 
         return $this->agreement;
@@ -49,9 +54,7 @@ class Trade extends Model
     public function delivery()
     {
         if (is_null($this->delivery)) {
-            $delivery = $this->children()->ApplicableSupplyChainTradeDelivery;
-
-            $this->delivery = new Delivery($delivery);
+            $this->delivery = new Delivery($this->element->ApplicableSupplyChainTradeDelivery);
         }
 
         return $this->delivery;
@@ -65,9 +68,7 @@ class Trade extends Model
     public function settlement()
     {
         if (is_null($this->settlement)) {
-            $settlement = $this->children()->ApplicableSupplyChainTradeSettlement;
-
-            $this->settlement = new Settlement($settlement);
+            $this->settlement = new Settlement($this->element->ApplicableSupplyChainTradeSettlement);
         }
 
         return $this->settlement;

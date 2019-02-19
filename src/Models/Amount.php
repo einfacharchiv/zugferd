@@ -7,20 +7,24 @@ class Amount extends Model
     /**
      * Returns the amount.
      *
-     * @return float
+     * @return float|null
      */
     public function amount()
     {
-        return (float) $this->simpleXml;
+        return !empty($this->element) ? (float) $this->element : null;
     }
 
     /**
      * Returns the currency.
      *
-     * @return string
+     * @return string|null
      */
     public function currency()
     {
-        return (string) @$this->simpleXml->attributes()->currencyID;
+        if (empty($this->element)) {
+            return null;
+        }
+
+        return (string) $this->element->attributes()->currencyID ?: null;
     }
 }

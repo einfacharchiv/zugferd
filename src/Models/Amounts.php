@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Amounts extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The line total.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Amount
@@ -75,9 +82,7 @@ class Amounts extends Model
     public function lineTotal()
     {
         if (is_null($this->lineTotal)) {
-            $lineTotal = $this->children()->LineTotalAmount;
-
-            $this->lineTotal = new Amount($lineTotal);
+            $this->lineTotal = new Amount($this->element->LineTotalAmount);
         }
 
         return $this->lineTotal;
@@ -91,9 +96,7 @@ class Amounts extends Model
     public function chargeTotal()
     {
         if (is_null($this->chargeTotal)) {
-            $chargeTotal = $this->children()->ChargeTotalAmount;
-
-            $this->chargeTotal = new Amount($chargeTotal);
+            $this->chargeTotal = new Amount($this->element->ChargeTotalAmount);
         }
 
         return $this->chargeTotal;
@@ -107,9 +110,7 @@ class Amounts extends Model
     public function allowanceTotal()
     {
         if (is_null($this->allowanceTotal)) {
-            $allowanceTotal = $this->children()->AllowanceTotalAmount;
-
-            $this->allowanceTotal = new Amount($allowanceTotal);
+            $this->allowanceTotal = new Amount($this->element->AllowanceTotalAmount);
         }
 
         return $this->allowanceTotal;
@@ -123,9 +124,7 @@ class Amounts extends Model
     public function taxBasisTotal()
     {
         if (is_null($this->taxBasisTotal)) {
-            $taxBasisTotal = $this->children()->TaxBasisTotalAmount;
-
-            $this->taxBasisTotal = new Amount($taxBasisTotal);
+            $this->taxBasisTotal = new Amount($this->element->TaxBasisTotalAmount);
         }
 
         return $this->taxBasisTotal;
@@ -139,9 +138,7 @@ class Amounts extends Model
     public function taxTotal()
     {
         if (is_null($this->taxTotal)) {
-            $taxTotal = $this->children()->TaxTotalAmount;
-
-            $this->taxTotal = new Amount($taxTotal);
+            $this->taxTotal = new Amount($this->element->TaxTotalAmount);
         }
 
         return $this->taxTotal;
@@ -155,9 +152,7 @@ class Amounts extends Model
     public function grandTotal()
     {
         if (is_null($this->grandTotal)) {
-            $grandTotal = $this->children()->GrandTotalAmount;
-
-            $this->grandTotal = new Amount($grandTotal);
+            $this->grandTotal = new Amount($this->element->GrandTotalAmount);
         }
 
         return $this->grandTotal;
@@ -171,9 +166,7 @@ class Amounts extends Model
     public function totalPrepaid()
     {
         if (is_null($this->totalPrepaid)) {
-            $totalPrepaid = $this->children()->TotalPrepaidAmount;
-
-            $this->totalPrepaid = new Amount($totalPrepaid);
+            $this->totalPrepaid = new Amount($this->element->TotalPrepaidAmount);
         }
 
         return $this->totalPrepaid;
@@ -187,9 +180,7 @@ class Amounts extends Model
     public function totalAllowanceCharge()
     {
         if (is_null($this->totalAllowanceCharge)) {
-            $totalAllowanceCharge = $this->children()->TotalAllowanceChargeAmount;
-
-            $this->totalAllowanceCharge = new Amount($totalAllowanceCharge);
+            $this->totalAllowanceCharge = new Amount($this->element->TotalAllowanceChargeAmount);
         }
 
         return $this->totalAllowanceCharge;
@@ -203,9 +194,7 @@ class Amounts extends Model
     public function duePayable()
     {
         if (is_null($this->duePayable)) {
-            $duePayable = $this->children()->DuePayableAmount;
-
-            $this->duePayable = new Amount($duePayable);
+            $this->duePayable = new Amount($this->element->DuePayableAmount);
         }
 
         return $this->duePayable;

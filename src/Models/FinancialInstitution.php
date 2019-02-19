@@ -5,22 +5,29 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class FinancialInstitution extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * Returns the BIC.
      *
-     * @return string
+     * @return string|null
      */
     public function bic()
     {
-        return (string) $this->children()->BICID;
+        return (string) $this->element->BICID ?: null;
     }
 
     /**
      * Returns the name.
      *
-     * @return string
+     * @return string|null
      */
     public function name()
     {
-        return (string) $this->children()->Name;
+        return (string) $this->element->Name ?: null;
     }
 }

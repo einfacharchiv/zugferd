@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Settlement extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The payment methods.
      *
      * @var array
@@ -35,21 +42,21 @@ class Settlement extends Model
     /**
      * Returns the payment reference.
      *
-     * @return string
+     * @return string|null
      */
     public function paymentReference()
     {
-        return (string) $this->children()->PaymentReference;
+        return (string) $this->element->PaymentReference ?: null;
     }
 
     /**
      * Returns the currency.
      *
-     * @return string
+     * @return string|null
      */
     public function currency()
     {
-        return (string) $this->children()->InvoiceCurrencyCode;
+        return (string) $this->element->InvoiceCurrencyCode ?: null;
     }
 
     /**
@@ -62,7 +69,7 @@ class Settlement extends Model
         if (is_null($this->paymentMethods)) {
             $paymentMethods = [];
 
-            foreach ($this->children()->SpecifiedTradeSettlementPaymentMeans as $paymentMethod) {
+            foreach ($this->element->SpecifiedTradeSettlementPaymentMeans as $paymentMethod) {
                 $paymentMethods[] = new PaymentMethod($paymentMethod);
             }
 
@@ -82,7 +89,7 @@ class Settlement extends Model
         if (is_null($this->taxes)) {
             $taxes = [];
 
-            foreach ($this->children()->ApplicableTradeTax as $tax) {
+            foreach ($this->element->ApplicableTradeTax as $tax) {
                 $taxes[] = new Tax($tax);
             }
 
@@ -100,9 +107,7 @@ class Settlement extends Model
     public function amounts()
     {
         if (is_null($this->amounts)) {
-            $amounts = $this->children()->SpecifiedTradeSettlementMonetarySummation;
-
-            $this->amounts = new Amounts($amounts);
+            $this->amounts = new Amounts($this->element->SpecifiedTradeSettlementMonetarySummation);
         }
 
         return $this->amounts;
@@ -118,7 +123,7 @@ class Settlement extends Model
         if (is_null($this->paymentTerms)) {
             $paymentTerms = [];
 
-            foreach ($this->children()->SpecifiedTradePaymentTerms as $SpecifiedTradePaymentTerms) {
+            foreach ($this->element->SpecifiedTradePaymentTerms as $SpecifiedTradePaymentTerms) {
                 $paymentTerms[] = new PaymentTerms($SpecifiedTradePaymentTerms);
             }
 

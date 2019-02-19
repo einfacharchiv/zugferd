@@ -36,9 +36,7 @@ class Reader
     public function document()
     {
         if (is_null($this->document)) {
-            $document = new \SimpleXMLElement($this->xml);
-
-            $this->document = new Document($document);
+            $this->document = new Document($this->xml);
         }
 
         return $this->document;
@@ -57,7 +55,7 @@ class Reader
     /**
      * Returns the type.
      *
-     * @return string
+     * @return string|null
      */
     public function type()
     {
@@ -77,7 +75,7 @@ class Reader
     /**
      * Returns the id.
      *
-     * @return string
+     * @return string|null
      */
     public function id()
     {
@@ -87,7 +85,7 @@ class Reader
     /**
      * Returns the name.
      *
-     * @return string
+     * @return string|null
      */
     public function name()
     {
@@ -97,7 +95,7 @@ class Reader
     /**
      * Returns the type code.
      *
-     * @return string
+     * @return string|null
      */
     public function typeCode()
     {
@@ -197,7 +195,7 @@ class Reader
     /**
      * Returns the payment reference.
      *
-     * @return string
+     * @return string|null
      */
     public function paymentReference()
     {
@@ -207,7 +205,7 @@ class Reader
     /**
      * Returns the currency.
      *
-     * @return string
+     * @return string|null
      */
     public function currency()
     {

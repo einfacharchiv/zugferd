@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class PaymentTerms extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The due date.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Date
@@ -14,11 +21,11 @@ class PaymentTerms extends Model
     /**
      * Returns the description.
      *
-     * @return string
+     * @return string|null
      */
     public function description()
     {
-        return (string) $this->children()->Description;
+        return (string) $this->element->Description ?: null;
     }
 
     /**
@@ -29,9 +36,7 @@ class PaymentTerms extends Model
     public function dueDate()
     {
         if (is_null($this->dueDate)) {
-            $dueDate = $this->children()->DueDateDateTime;
-
-            $this->dueDate = new Date($dueDate);
+            $this->dueDate = new Date($this->element->DueDateDateTime);
         }
 
         return $this->dueDate;

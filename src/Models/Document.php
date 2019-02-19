@@ -2,16 +2,14 @@
 
 namespace einfachArchiv\ZUGFeRD\Models;
 
-use einfachArchiv\ZUGFeRD\Schema\Namespaces;
-
 class Document extends Model
 {
     /**
-     * The children's namespace.
+     * The namespace.
      *
      * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
      */
-    protected $namespace = Namespaces::RSM;
+    protected $namespace = parent::NAMESPACE_RSM;
 
     /**
      * The context.
@@ -42,9 +40,7 @@ class Document extends Model
     public function context()
     {
         if (is_null($this->context)) {
-            $context = $this->children()->SpecifiedExchangedDocumentContext;
-
-            $this->context = new Context($context);
+            $this->context = new Context($this->element->SpecifiedExchangedDocumentContext);
         }
 
         return $this->context;
@@ -58,9 +54,7 @@ class Document extends Model
     public function header()
     {
         if (is_null($this->header)) {
-            $header = $this->children()->HeaderExchangedDocument;
-
-            $this->header = new Header($header);
+            $this->header = new Header($this->element->HeaderExchangedDocument);
         }
 
         return $this->header;
@@ -74,9 +68,7 @@ class Document extends Model
     public function trade()
     {
         if (is_null($this->trade)) {
-            $trade = $this->children()->SpecifiedSupplyChainTradeTransaction;
-
-            $this->trade = new Trade($trade);
+            $this->trade = new Trade($this->element->SpecifiedSupplyChainTradeTransaction);
         }
 
         return $this->trade;

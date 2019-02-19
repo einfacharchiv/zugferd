@@ -2,50 +2,73 @@
 
 namespace einfachArchiv\ZUGFeRD\Models;
 
-use einfachArchiv\ZUGFeRD\Schema\Namespaces;
-
 class Model
 {
     /**
-     * The SimpleXMLElement.
+     * The namespaces.
+     */
+    const NAMESPACE_RSM = 'urn:ferd:CrossIndustryDocument:invoice:1p0';
+    const NAMESPACE_XS = 'http://www.w3.org/2001/XMLSchema';
+    const NAMESPACE_QDT = 'urn:un:unece:uncefact:data:standard:QualifiedDataType:12';
+    const NAMESPACE_RAM = 'urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12';
+    const NAMESPACE_UDT = 'urn:un:unece:uncefact:data:standard:UnqualifiedDataType:15';
+
+    /**
+     * The types.
+     */
+    const TYPE_BASIC = 'BASIC';
+    const TYPE_COMFORT = 'COMFORT';
+    const TYPE_EXTENDED = 'EXTENDED';
+
+    /**
+     * The underlying SimpleXMLElement.
      *
      * @var \SimpleXMLElement
      */
-    protected $simpleXml;
+    private $baseElement;
 
     /**
-     * The children's namespace.
+     * The current SimpleXMLElement.
+     *
+     * @var \SimpleXMLElement
+     */
+    protected $element;
+
+    /**
+     * The namespace.
      *
      * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
      */
-    protected $namespace = Namespaces::RAM;
+    protected $namespace;
 
     /**
-     * The children.
-     *
-     * @var \SimpleXMLElement
+     * @param mixed $element The XML element
      */
-    protected $children;
-
-    /**
-     * @param string $simpleXml The SimpleXMLElement
-     */
-    public function __construct($simpleXml)
+    public function __construct($element)
     {
-        $this->simpleXml = $simpleXml;
+        if (is_string($element)) {
+            $element = new \SimpleXMLElement($element);
+        }
+
+        $this->baseElement = $element;
+        $this->element = $this->baseElement;
+
+        if ($this->namespace) {
+            $this->changeNamespace();
+        }
     }
 
     /**
-     * Returns the children.
-     *
-     * @return \SimpleXMLElement
+     * Changes the namespace.
      */
-    protected function children()
+    protected function changeNamespace($namespace = null)
     {
-        if (is_null($this->children)) {
-            $this->children = $this->simpleXml->children($this->namespace);
+        if ($namespace) {
+            $this->namespace = $namespace;
         }
 
-        return $this->children;
+        if (!empty($this->baseElement[0])) {
+            $this->element = $this->baseElement->children($this->namespace);
+        }
     }
 }

@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class TradeParty extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The address.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Address
@@ -21,11 +28,11 @@ class TradeParty extends Model
     /**
      * Returns the name.
      *
-     * @return string
+     * @return string|null
      */
     public function name()
     {
-        return (string) $this->children()->Name;
+        return (string) $this->element->Name ?: null;
     }
 
     /**
@@ -36,9 +43,7 @@ class TradeParty extends Model
     public function address()
     {
         if (is_null($this->address)) {
-            $address = $this->children()->PostalTradeAddress;
-
-            $this->address = new Address($address);
+            $this->address = new Address($this->element->PostalTradeAddress);
         }
 
         return $this->address;
@@ -54,7 +59,7 @@ class TradeParty extends Model
         if (is_null($this->taxNumbers)) {
             $taxNumbers = [];
 
-            foreach ($this->children()->SpecifiedTaxRegistration as $taxNumber) {
+            foreach ($this->element->SpecifiedTaxRegistration as $taxNumber) {
                 $taxNumbers[] = new TaxNumber($taxNumber);
             }
 

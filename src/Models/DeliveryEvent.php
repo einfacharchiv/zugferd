@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class DeliveryEvent extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The occurrence date.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\Date
@@ -19,9 +26,7 @@ class DeliveryEvent extends Model
     public function occurrenceDate()
     {
         if (is_null($this->occurrenceDate)) {
-            $occurrenceDate = $this->children()->OccurrenceDateTime;
-
-            $this->occurrenceDate = new Date($occurrenceDate);
+            $this->occurrenceDate = new Date($this->element->OccurrenceDateTime);
         }
 
         return $this->occurrenceDate;

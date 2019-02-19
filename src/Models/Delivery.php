@@ -5,6 +5,13 @@ namespace einfachArchiv\ZUGFeRD\Models;
 class Delivery extends Model
 {
     /**
+     * The namespace.
+     *
+     * @var \einfachArchiv\ZUGFeRD\Schema\Namespaces
+     */
+    protected $namespace = parent::NAMESPACE_RAM;
+
+    /**
      * The delivery event.
      *
      * @var \einfachArchiv\ZUGFeRD\Models\DeliveryEvent
@@ -19,9 +26,7 @@ class Delivery extends Model
     public function event()
     {
         if (is_null($this->event)) {
-            $event = $this->children()->ActualDeliverySupplyChainEvent;
-
-            $this->event = new DeliveryEvent($event);
+            $this->event = new DeliveryEvent($this->element->ActualDeliverySupplyChainEvent);
         }
 
         return $this->event;
