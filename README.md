@@ -4,6 +4,8 @@
 
 This package provides an easy way to convert a ZUGFeRD-invoice.xml to a PHP object.
 
+We use it in our German SaaS product [einfachArchiv](https://www.einfacharchiv.com).
+
 ## Requirements
 
 PHP 7.0 and later.
