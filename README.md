@@ -4,7 +4,9 @@
 
 This package provides an easy way to convert a ZUGFeRD-invoice.xml to a PHP object.
 
-We use it in our German SaaS product [einfachArchiv](https://www.einfacharchiv.com).
+You can use the [unpack-pdf-attachments package](https://github.com/einfachArchiv/unpack-pdf-attachments) to unpack a ZUGFeRD-invoice.xml from a PDF.
+
+We use both packages in our German SaaS product [einfachArchiv](https://www.einfacharchiv.com).
 
 ## Requirements
 
