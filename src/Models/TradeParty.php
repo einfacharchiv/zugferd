@@ -26,6 +26,16 @@ class TradeParty extends Model
     protected $taxNumbers;
 
     /**
+     * Returns the id.
+     *
+     * @return string|null
+     */
+    public function id()
+    {
+        return (string) $this->element->ID ?: null;
+    }
+
+    /**
      * Returns the name.
      *
      * @return string|null

@@ -59,6 +59,7 @@ if (Validator::isValid($xml)) {
     }
 
     // Buyer
+    $reader->buyer()->id();
     $reader->buyer()->name();
     $reader->buyer()->address()->lineOne();
     $reader->buyer()->address()->lineTwo();
