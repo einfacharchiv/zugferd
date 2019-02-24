@@ -44,7 +44,7 @@ class Settlement extends Model
      *
      * @return string|null
      */
-    public function paymentReference()
+    public function getPaymentReference()
     {
         return (string) $this->element->PaymentReference ?: null;
     }
@@ -54,7 +54,7 @@ class Settlement extends Model
      *
      * @return string|null
      */
-    public function currency()
+    public function getCurrency()
     {
         return (string) $this->element->InvoiceCurrencyCode ?: null;
     }
@@ -64,7 +64,7 @@ class Settlement extends Model
      *
      * @return array
      */
-    public function paymentMethods()
+    public function getPaymentMethods()
     {
         if (is_null($this->paymentMethods)) {
             $paymentMethods = [];
@@ -84,7 +84,7 @@ class Settlement extends Model
      *
      * @return array
      */
-    public function taxes()
+    public function getTaxes()
     {
         if (is_null($this->taxes)) {
             $taxes = [];
@@ -104,7 +104,7 @@ class Settlement extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amounts
      */
-    public function amounts()
+    public function getAmounts()
     {
         if (is_null($this->amounts)) {
             $this->amounts = new Amounts($this->element->SpecifiedTradeSettlementMonetarySummation);
@@ -118,7 +118,7 @@ class Settlement extends Model
      *
      * @return array
      */
-    public function paymentTerms()
+    public function getPaymentTerms()
     {
         if (is_null($this->paymentTerms)) {
             $paymentTerms = [];

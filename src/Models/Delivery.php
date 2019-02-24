@@ -23,7 +23,7 @@ class Delivery extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\DeliveryEvent
      */
-    public function event()
+    public function getEvent()
     {
         if (is_null($this->event)) {
             $this->event = new DeliveryEvent($this->element->ActualDeliverySupplyChainEvent);
@@ -37,8 +37,8 @@ class Delivery extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function occurrenceDate()
+    public function getOccurrenceDate()
     {
-        return $this->event()->occurrenceDate();
+        return $this->getEvent()->getOccurrenceDate();
     }
 }

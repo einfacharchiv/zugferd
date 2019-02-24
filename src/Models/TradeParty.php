@@ -30,7 +30,7 @@ class TradeParty extends Model
      *
      * @return string|null
      */
-    public function id()
+    public function getId()
     {
         return (string) $this->element->ID ?: null;
     }
@@ -40,7 +40,7 @@ class TradeParty extends Model
      *
      * @return string|null
      */
-    public function name()
+    public function getName()
     {
         return (string) $this->element->Name ?: null;
     }
@@ -50,7 +50,7 @@ class TradeParty extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Address
      */
-    public function address()
+    public function getAddress()
     {
         if (is_null($this->address)) {
             $this->address = new Address($this->element->PostalTradeAddress);
@@ -64,7 +64,7 @@ class TradeParty extends Model
      *
      * @return array
      */
-    public function taxNumbers()
+    public function getTaxNumbers()
     {
         if (is_null($this->taxNumbers)) {
             $taxNumbers = [];
@@ -77,5 +77,55 @@ class TradeParty extends Model
         }
 
         return $this->taxNumbers;
+    }
+
+    /**
+     * Returns the first line.
+     *
+     * @return string|null
+     */
+    public function getLineOne()
+    {
+        return $this->getAddress()->getLineOne();
+    }
+
+    /**
+     * Returns the second line.
+     *
+     * @return string|null
+     */
+    public function getLineTwo()
+    {
+        return $this->getAddress()->getLineTwo();
+    }
+
+    /**
+     * Returns the zip code.
+     *
+     * @return string|null
+     */
+    public function getZip()
+    {
+        return $this->getAddress()->getZip();
+    }
+
+    /**
+     * Returns the city.
+     *
+     * @return string|null
+     */
+    public function getCity()
+    {
+        return $this->getAddress()->getCity();
+    }
+
+    /**
+     * Returns the country.
+     *
+     * @return string|null
+     */
+    public function getCountry()
+    {
+        return $this->getAddress()->getCountry();
     }
 }

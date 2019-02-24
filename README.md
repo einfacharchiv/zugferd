@@ -35,107 +35,107 @@ if (Validator::isValid($xml)) {
 
     // Available methods
     // Context
-    $reader->type();
+    $reader->getType();
 
     // Header
-    $reader->id();
-    $reader->name();
-    $reader->typeCode();
-    $reader->issueDate()->dateTimeString();
+    $reader->getId();
+    $reader->getName();
+    $reader->getTypeCode();
+    $reader->getIssueDate()->toDateTimeString();
 
-    foreach ($reader->notes() as $note) {
-        $note->note();
+    foreach ($reader->getNotes() as $note) {
+        $note->getNote();
     }
 
     // Seller
-    $reader->seller()->name();
-    $reader->seller()->address()->lineOne();
-    $reader->seller()->address()->lineTwo();
-    $reader->seller()->address()->zip();
-    $reader->seller()->address()->city();
-    $reader->seller()->address()->country();
+    $reader->getSeller()->getName();
+    $reader->getSeller()->getLineOne();
+    $reader->getSeller()->getLineTwo();
+    $reader->getSeller()->getZip();
+    $reader->getSeller()->getCity();
+    $reader->getSeller()->getCountry();
 
-    foreach ($reader->seller()->taxNumbers() as $taxNumber) {
-        $taxNumber->number();
-        $taxNumber->type();
+    foreach ($reader->getSeller()->getTaxNumbers() as $taxNumber) {
+        $taxNumber->getNumber();
+        $taxNumber->getType();
     }
 
     // Buyer
-    $reader->buyer()->id();
-    $reader->buyer()->name();
-    $reader->buyer()->address()->lineOne();
-    $reader->buyer()->address()->lineTwo();
-    $reader->buyer()->address()->zip();
-    $reader->buyer()->address()->city();
-    $reader->buyer()->address()->country();
+    $reader->getBuyer()->getId();
+    $reader->getBuyer()->getName();
+    $reader->getBuyer()->getLineOne();
+    $reader->getBuyer()->getLineTwo();
+    $reader->getBuyer()->getZip();
+    $reader->getBuyer()->getCity();
+    $reader->getBuyer()->getCountry();
 
-    foreach ($reader->buyer()->taxNumbers() as $taxNumber) {
-        $taxNumber->number();
-        $taxNumber->type();
+    foreach ($reader->getBuyer()->getTaxNumbers() as $taxNumber) {
+        $taxNumber->getNumber();
+        $taxNumber->getType();
     }
 
     // Delivery
-    $reader->occurrenceDate()->dateTimeString();
+    $reader->getOccurrenceDate()->toDateTimeString();
 
     // Settlement
-    $reader->paymentReference();
-    $reader->currency();
+    $reader->getPaymentReference();
+    $reader->getCurrency();
 
-    foreach ($reader->paymentMethods() as $paymentMethod) {
-        $paymentMethod->typeCode();
-        $paymentMethod->information();
+    foreach ($reader->getPaymentMethods() as $paymentMethod) {
+        $paymentMethod->getTypeCode();
+        $paymentMethod->getInformation();
 
-        $paymentMethod->financialAccount()->iban();
-        $paymentMethod->financialAccount()->name();
-        $paymentMethod->financialAccount()->id();
+        $paymentMethod->getFinancialAccount()->getIban();
+        $paymentMethod->getFinancialAccount()->getName();
+        $paymentMethod->getFinancialAccount()->getId();
         
-        $paymentMethod->financialInstitution()->bic();
-        $paymentMethod->financialInstitution()->name();
+        $paymentMethod->getFinancialInstitution()->getBic();
+        $paymentMethod->getFinancialInstitution()->getName();
     }
 
-    foreach ($reader->taxes() as $tax) {
-        $tax->tax()->amount();
-        $tax->tax()->currency();
+    foreach ($reader->getTaxes() as $tax) {
+        $tax->getTax()->getAmount();
+        $tax->getTax()->getCurrency();
 
-        $tax->typeCode();
+        $tax->getTypeCode();
         
-        $tax->basisAmount()->amount();
-        $tax->basisAmount()->currency();
+        $tax->getBasisAmount()->getAmount();
+        $tax->getBasisAmount()->getCurrency();
         
-        $tax->categoryCode();
-        $tax->percentage();
+        $tax->getCategoryCode();
+        $tax->getPercentage();
     }
 
-    $reader->amounts()->lineTotal()->amount();
-    $reader->amounts()->lineTotal()->currency();
+    $reader->getLineTotal()->getAmount();
+    $reader->getLineTotal()->getCurrency();
 
-    $reader->amounts()->chargeTotal()->amount();
-    $reader->amounts()->chargeTotal()->currency();
+    $reader->getChargeTotal()->getAmount();
+    $reader->getChargeTotal()->getCurrency();
 
-    $reader->amounts()->allowanceTotal()->amount();
-    $reader->amounts()->allowanceTotal()->currency();
+    $reader->getAllowanceTotal()->getAmount();
+    $reader->getAllowanceTotal()->getCurrency();
 
-    $reader->amounts()->taxBasisTotal()->amount();
-    $reader->amounts()->taxBasisTotal()->currency();
+    $reader->getTaxBasisTotal()->getAmount();
+    $reader->getTaxBasisTotal()->getCurrency();
 
-    $reader->amounts()->taxTotal()->amount();
-    $reader->amounts()->taxTotal()->currency();
+    $reader->getTaxTotal()->getAmount();
+    $reader->getTaxTotal()->getCurrency();
 
-    $reader->amounts()->grandTotal()->amount();
-    $reader->amounts()->grandTotal()->currency();
+    $reader->getGrandTotal()->getAmount();
+    $reader->getGrandTotal()->getCurrency();
 
-    $reader->amounts()->totalPrepaid()->amount();
-    $reader->amounts()->totalPrepaid()->currency();
+    $reader->getTotalPrepaid()->getAmount();
+    $reader->getTotalPrepaid()->getCurrency();
 
-    $reader->amounts()->totalAllowanceCharge()->amount();
-    $reader->amounts()->totalAllowanceCharge()->currency();
+    $reader->getTotalAllowanceCharge()->getAmount();
+    $reader->getTotalAllowanceCharge()->getCurrency();
 
-    $reader->amounts()->duePayable()->amount();
-    $reader->amounts()->duePayable()->currency();
+    $reader->getDuePayable()->getAmount();
+    $reader->getDuePayable()->getCurrency();
 
-    foreach ($reader->paymentTerms() as $paymentTerms) {
-        $paymentTerms->description();
-        $paymentTerms->dueDate()->dateTimeString();
+    foreach ($reader->getPaymentTerms() as $paymentTerms) {
+        $paymentTerms->getDescription();
+        $paymentTerms->getDueDate()->toDateTimeString();
     }
 }
 ```

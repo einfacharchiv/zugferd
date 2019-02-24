@@ -30,7 +30,7 @@ class Tax extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function tax()
+    public function getTax()
     {
         if (is_null($this->tax)) {
             $this->tax = new Amount($this->element->CalculatedAmount);
@@ -44,7 +44,7 @@ class Tax extends Model
      *
      * @return string|null
      */
-    public function typeCode()
+    public function getTypeCode()
     {
         return (string) $this->element->TypeCode ?: null;
     }
@@ -54,7 +54,7 @@ class Tax extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function basisAmount()
+    public function getBasisAmount()
     {
         if (is_null($this->basisAmount)) {
             $this->basisAmount = new Amount($this->element->BasisAmount);
@@ -68,7 +68,7 @@ class Tax extends Model
      *
      * @return string|null
      */
-    public function categoryCode()
+    public function getCategoryCode()
     {
         return (string) $this->element->CategoryCode ?: null;
     }
@@ -78,7 +78,7 @@ class Tax extends Model
      *
      * @return float|null
      */
-    public function percentage()
+    public function getPercentage()
     {
         return !empty($this->element->ApplicablePercent) ? (float) $this->element->ApplicablePercent : null;
     }

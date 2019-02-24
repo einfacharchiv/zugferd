@@ -23,7 +23,7 @@ class DeliveryEvent extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function occurrenceDate()
+    public function getOccurrenceDate()
     {
         if (is_null($this->occurrenceDate)) {
             $this->occurrenceDate = new Date($this->element->OccurrenceDateTime);

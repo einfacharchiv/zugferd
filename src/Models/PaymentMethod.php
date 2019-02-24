@@ -30,7 +30,7 @@ class PaymentMethod extends Model
      *
      * @return string|null
      */
-    public function typeCode()
+    public function getTypeCode()
     {
         return (string) $this->element->TypeCode ?: null;
     }
@@ -40,7 +40,7 @@ class PaymentMethod extends Model
      *
      * @return string|null
      */
-    public function information()
+    public function getInformation()
     {
         return (string) $this->element->Information ?: null;
     }
@@ -50,7 +50,7 @@ class PaymentMethod extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\FinancialAccount
      */
-    public function financialAccount()
+    public function getFinancialAccount()
     {
         if (is_null($this->financialAccount)) {
             $this->financialAccount = new FinancialAccount($this->element->PayeePartyCreditorFinancialAccount);
@@ -64,7 +64,7 @@ class PaymentMethod extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\FinancialInstitution
      */
-    public function financialInstitution()
+    public function getFinancialInstitution()
     {
         if (is_null($this->financialInstitution)) {
             $this->financialInstitution = new FinancialInstitution($this->element->PayeeSpecifiedCreditorFinancialInstitution);

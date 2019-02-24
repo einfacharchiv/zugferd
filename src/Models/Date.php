@@ -18,7 +18,7 @@ class Date extends Model
      *
      * @return string|null
      */
-    public function date()
+    public function getDate()
     {
         return (string) $this->element->DateTimeString ?: null;
     }
@@ -28,7 +28,7 @@ class Date extends Model
      *
      * @return string|null
      */
-    public function format()
+    public function getFormat()
     {
         if (empty($this->element->DateTimeString)) {
             return null;
@@ -44,10 +44,10 @@ class Date extends Model
      */
     public function carbon()
     {
-        $date = $this->date();
+        $date = $this->getDate();
 
         if (!is_null($date)) {
-            switch ($this->format()) {
+            switch ($this->getFormat()) {
                 case '102':
                     $format = 'Ymd';
                     $resetTime = true;
@@ -84,7 +84,7 @@ class Date extends Model
      *
      * @return string|null
      */
-    public function dateTimeString()
+    public function toDateTimeString()
     {
         $carbon = $this->carbon();
 
@@ -98,7 +98,7 @@ class Date extends Model
      *
      * @return string|null
      */
-    public function dateString()
+    public function toDateString()
     {
         $carbon = $this->carbon();
 

@@ -16,7 +16,7 @@ class FinancialAccount extends Model
      *
      * @return string|null
      */
-    public function iban()
+    public function getIban()
     {
         return (string) $this->element->IBANID ?: null;
     }
@@ -26,7 +26,7 @@ class FinancialAccount extends Model
      *
      * @return string|null
      */
-    public function name()
+    public function getName()
     {
         return (string) $this->element->AccountName ?: null;
     }
@@ -36,7 +36,7 @@ class FinancialAccount extends Model
      *
      * @return string|null
      */
-    public function id()
+    public function getId()
     {
         return (string) $this->element->ProprietaryID ?: null;
     }

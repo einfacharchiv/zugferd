@@ -16,7 +16,7 @@ class Address extends Model
      *
      * @return string|null
      */
-    public function lineOne()
+    public function getLineOne()
     {
         return (string) $this->element->LineOne ?: null;
     }
@@ -26,7 +26,7 @@ class Address extends Model
      *
      * @return string|null
      */
-    public function lineTwo()
+    public function getLineTwo()
     {
         return (string) $this->element->LineTwo ?: null;
     }
@@ -36,7 +36,7 @@ class Address extends Model
      *
      * @return string|null
      */
-    public function zip()
+    public function getZip()
     {
         return (string) $this->element->PostcodeCode ?: null;
     }
@@ -46,7 +46,7 @@ class Address extends Model
      *
      * @return string|null
      */
-    public function city()
+    public function getCity()
     {
         return (string) $this->element->CityName ?: null;
     }
@@ -56,7 +56,7 @@ class Address extends Model
      *
      * @return string|null
      */
-    public function country()
+    public function getCountry()
     {
         return (string) $this->element->CountryID ?: null;
     }

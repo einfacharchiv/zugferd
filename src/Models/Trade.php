@@ -37,7 +37,7 @@ class Trade extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Agreement
      */
-    public function agreement()
+    public function getAgreement()
     {
         if (is_null($this->agreement)) {
             $this->agreement = new Agreement($this->element->ApplicableSupplyChainTradeAgreement);
@@ -51,7 +51,7 @@ class Trade extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Delivery
      */
-    public function delivery()
+    public function getDelivery()
     {
         if (is_null($this->delivery)) {
             $this->delivery = new Delivery($this->element->ApplicableSupplyChainTradeDelivery);
@@ -65,7 +65,7 @@ class Trade extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Settlement
      */
-    public function settlement()
+    public function getSettlement()
     {
         if (is_null($this->settlement)) {
             $this->settlement = new Settlement($this->element->ApplicableSupplyChainTradeSettlement);

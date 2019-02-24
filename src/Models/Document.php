@@ -37,7 +37,7 @@ class Document extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Context
      */
-    public function context()
+    public function getContext()
     {
         if (is_null($this->context)) {
             $this->context = new Context($this->element->SpecifiedExchangedDocumentContext);
@@ -51,7 +51,7 @@ class Document extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Header
      */
-    public function header()
+    public function getHeader()
     {
         if (is_null($this->header)) {
             $this->header = new Header($this->element->HeaderExchangedDocument);
@@ -65,7 +65,7 @@ class Document extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Trade
      */
-    public function trade()
+    public function getTrade()
     {
         if (is_null($this->trade)) {
             $this->trade = new Trade($this->element->SpecifiedSupplyChainTradeTransaction);

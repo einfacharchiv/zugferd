@@ -16,7 +16,7 @@ class Context extends Model
      *
      * @return string
      */
-    public function type()
+    public function getType()
     {
         switch ($this->element->GuidelineSpecifiedDocumentContextParameter->ID) {
             case 'urn:ferd:CrossIndustryDocument:invoice:1p0:basic':

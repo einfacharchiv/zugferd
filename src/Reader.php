@@ -33,7 +33,7 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Document
      */
-    public function document()
+    public function getDocument()
     {
         if (is_null($this->document)) {
             $this->document = new Document($this->xml);
@@ -47,9 +47,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Context
      */
-    public function context()
+    public function getContext()
     {
-        return $this->document()->context();
+        return $this->getDocument()->getContext();
     }
 
     /**
@@ -57,9 +57,9 @@ class Reader
      *
      * @return string|null
      */
-    public function type()
+    public function getType()
     {
-        return $this->context()->type();
+        return $this->getContext()->getType();
     }
 
     /**
@@ -67,9 +67,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Header
      */
-    public function header()
+    public function getHeader()
     {
-        return $this->document()->header();
+        return $this->getDocument()->getHeader();
     }
 
     /**
@@ -77,9 +77,9 @@ class Reader
      *
      * @return string|null
      */
-    public function id()
+    public function getId()
     {
-        return $this->header()->id();
+        return $this->getHeader()->getId();
     }
 
     /**
@@ -87,9 +87,9 @@ class Reader
      *
      * @return string|null
      */
-    public function name()
+    public function getName()
     {
-        return $this->header()->name();
+        return $this->getHeader()->getName();
     }
 
     /**
@@ -97,9 +97,9 @@ class Reader
      *
      * @return string|null
      */
-    public function typeCode()
+    public function getTypeCode()
     {
-        return $this->header()->typeCode();
+        return $this->getHeader()->getTypeCode();
     }
 
     /**
@@ -107,9 +107,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function issueDate()
+    public function getIssueDate()
     {
-        return $this->header()->issueDate();
+        return $this->getHeader()->getIssueDate();
     }
 
     /**
@@ -117,9 +117,9 @@ class Reader
      *
      * @return array
      */
-    public function notes()
+    public function getNotes()
     {
-        return $this->header()->notes();
+        return $this->getHeader()->getNotes();
     }
 
     /**
@@ -127,9 +127,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Trade
      */
-    public function trade()
+    public function getTrade()
     {
-        return $this->document()->trade();
+        return $this->getDocument()->getTrade();
     }
 
     /**
@@ -137,9 +137,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Agreement
      */
-    public function agreement()
+    public function getAgreement()
     {
-        return $this->trade()->agreement();
+        return $this->getTrade()->getAgreement();
     }
 
     /**
@@ -147,9 +147,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\TradeParty
      */
-    public function seller()
+    public function getSeller()
     {
-        return $this->agreement()->seller();
+        return $this->getAgreement()->getSeller();
     }
 
     /**
@@ -157,9 +157,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\TradeParty
      */
-    public function buyer()
+    public function getBuyer()
     {
-        return $this->agreement()->buyer();
+        return $this->getAgreement()->getBuyer();
     }
 
     /**
@@ -167,9 +167,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Delivery
      */
-    public function delivery()
+    public function getDelivery()
     {
-        return $this->trade()->delivery();
+        return $this->getTrade()->getDelivery();
     }
 
     /**
@@ -177,9 +177,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function occurrenceDate()
+    public function getOccurrenceDate()
     {
-        return $this->delivery()->occurrenceDate();
+        return $this->getDelivery()->getOccurrenceDate();
     }
 
     /**
@@ -187,9 +187,9 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Settlement
      */
-    public function settlement()
+    public function getSettlement()
     {
-        return $this->trade()->settlement();
+        return $this->getTrade()->getSettlement();
     }
 
     /**
@@ -197,9 +197,9 @@ class Reader
      *
      * @return string|null
      */
-    public function paymentReference()
+    public function getPaymentReference()
     {
-        return $this->settlement()->paymentReference();
+        return $this->getSettlement()->getPaymentReference();
     }
 
     /**
@@ -207,9 +207,9 @@ class Reader
      *
      * @return string|null
      */
-    public function currency()
+    public function getCurrency()
     {
-        return $this->settlement()->currency();
+        return $this->getSettlement()->getCurrency();
     }
 
     /**
@@ -217,9 +217,9 @@ class Reader
      *
      * @return array
      */
-    public function paymentMethods()
+    public function getPaymentMethods()
     {
-        return $this->settlement()->paymentMethods();
+        return $this->getSettlement()->getPaymentMethods();
     }
 
     /**
@@ -227,9 +227,9 @@ class Reader
      *
      * @return array
      */
-    public function taxes()
+    public function getTaxes()
     {
-        return $this->settlement()->taxes();
+        return $this->getSettlement()->getTaxes();
     }
 
     /**
@@ -237,9 +237,99 @@ class Reader
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amounts
      */
-    public function amounts()
+    public function getAmounts()
     {
-        return $this->settlement()->amounts();
+        return $this->getSettlement()->getAmounts();
+    }
+
+    /**
+     * Returns the line total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getLineTotal()
+    {
+        return $this->getAmounts()->getLineTotal();
+    }
+
+    /**
+     * Returns the charge total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getChargeTotal()
+    {
+        return $this->getAmounts()->getChargeTotal();
+    }
+
+    /**
+     * Returns the allowance total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getAllowanceTotal()
+    {
+        return $this->getAmounts()->getAllowanceTotal();
+    }
+
+    /**
+     * Returns the tax basis total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getTaxBasisTotal()
+    {
+        return $this->getAmounts()->getTaxBasisTotal();
+    }
+
+    /**
+     * Returns the tax total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getTaxTotal()
+    {
+        return $this->getAmounts()->getTaxTotal();
+    }
+
+    /**
+     * Returns the grand total.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getGrandTotal()
+    {
+        return $this->getAmounts()->getGrandTotal();
+    }
+
+    /**
+     * Returns the total prepaid.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getTotalPrepaid()
+    {
+        return $this->getAmounts()->getTotalPrepaid();
+    }
+
+    /**
+     * Returns the total allowance charge.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getTotalAllowanceCharge()
+    {
+        return $this->getAmounts()->getTotalAllowanceCharge();
+    }
+
+    /**
+     * Returns the due payable.
+     *
+     * @return \einfachArchiv\ZUGFeRD\Models\Amount
+     */
+    public function getDuePayable()
+    {
+        return $this->getAmounts()->getDuePayable();
     }
 
     /**
@@ -247,8 +337,8 @@ class Reader
      *
      * @return array
      */
-    public function paymentTerms()
+    public function getPaymentTerms()
     {
-        return $this->settlement()->paymentTerms();
+        return $this->getSettlement()->getPaymentTerms();
     }
 }

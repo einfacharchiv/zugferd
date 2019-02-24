@@ -79,7 +79,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function lineTotal()
+    public function getLineTotal()
     {
         if (is_null($this->lineTotal)) {
             $this->lineTotal = new Amount($this->element->LineTotalAmount);
@@ -93,7 +93,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function chargeTotal()
+    public function getChargeTotal()
     {
         if (is_null($this->chargeTotal)) {
             $this->chargeTotal = new Amount($this->element->ChargeTotalAmount);
@@ -107,7 +107,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function allowanceTotal()
+    public function getAllowanceTotal()
     {
         if (is_null($this->allowanceTotal)) {
             $this->allowanceTotal = new Amount($this->element->AllowanceTotalAmount);
@@ -121,7 +121,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function taxBasisTotal()
+    public function getTaxBasisTotal()
     {
         if (is_null($this->taxBasisTotal)) {
             $this->taxBasisTotal = new Amount($this->element->TaxBasisTotalAmount);
@@ -135,7 +135,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function taxTotal()
+    public function getTaxTotal()
     {
         if (is_null($this->taxTotal)) {
             $this->taxTotal = new Amount($this->element->TaxTotalAmount);
@@ -149,7 +149,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function grandTotal()
+    public function getGrandTotal()
     {
         if (is_null($this->grandTotal)) {
             $this->grandTotal = new Amount($this->element->GrandTotalAmount);
@@ -163,7 +163,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function totalPrepaid()
+    public function getTotalPrepaid()
     {
         if (is_null($this->totalPrepaid)) {
             $this->totalPrepaid = new Amount($this->element->TotalPrepaidAmount);
@@ -177,7 +177,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function totalAllowanceCharge()
+    public function getTotalAllowanceCharge()
     {
         if (is_null($this->totalAllowanceCharge)) {
             $this->totalAllowanceCharge = new Amount($this->element->TotalAllowanceChargeAmount);
@@ -191,7 +191,7 @@ class Amounts extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Amount
      */
-    public function duePayable()
+    public function getDuePayable()
     {
         if (is_null($this->duePayable)) {
             $this->duePayable = new Amount($this->element->DuePayableAmount);

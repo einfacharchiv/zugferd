@@ -30,7 +30,7 @@ class Header extends Model
      *
      * @return string|null
      */
-    public function id()
+    public function getId()
     {
         return (string) $this->element->ID ?: null;
     }
@@ -40,7 +40,7 @@ class Header extends Model
      *
      * @return string|null
      */
-    public function name()
+    public function getName()
     {
         return (string) $this->element->Name ?: null;
     }
@@ -50,7 +50,7 @@ class Header extends Model
      *
      * @return string|null
      */
-    public function typeCode()
+    public function getTypeCode()
     {
         return (string) $this->element->TypeCode ?: null;
     }
@@ -60,7 +60,7 @@ class Header extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function issueDate()
+    public function getIssueDate()
     {
         if (is_null($this->issueDate)) {
             $this->issueDate = new Date($this->element->IssueDateTime);
@@ -74,7 +74,7 @@ class Header extends Model
      *
      * @return array
      */
-    public function notes()
+    public function getNotes()
     {
         if (is_null($this->notes)) {
             $notes = [];

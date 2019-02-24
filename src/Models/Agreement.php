@@ -30,7 +30,7 @@ class Agreement extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\TradeParty
      */
-    public function seller()
+    public function getSeller()
     {
         if (is_null($this->seller)) {
             $this->seller = new TradeParty($this->element->SellerTradeParty);
@@ -44,7 +44,7 @@ class Agreement extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\TradeParty
      */
-    public function buyer()
+    public function getBuyer()
     {
         if (is_null($this->buyer)) {
             $this->buyer = new TradeParty($this->element->BuyerTradeParty);

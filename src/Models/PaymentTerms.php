@@ -23,7 +23,7 @@ class PaymentTerms extends Model
      *
      * @return string|null
      */
-    public function description()
+    public function getDescription()
     {
         return (string) $this->element->Description ?: null;
     }
@@ -33,7 +33,7 @@ class PaymentTerms extends Model
      *
      * @return \einfachArchiv\ZUGFeRD\Models\Date
      */
-    public function dueDate()
+    public function getDueDate()
     {
         if (is_null($this->dueDate)) {
             $this->dueDate = new Date($this->element->DueDateDateTime);

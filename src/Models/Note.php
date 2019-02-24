@@ -16,7 +16,7 @@ class Note extends Model
      *
      * @return string|null
      */
-    public function note()
+    public function getNote()
     {
         return (string) $this->element->Content ?: null;
     }

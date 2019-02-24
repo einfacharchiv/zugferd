@@ -16,7 +16,7 @@ class TaxNumber extends Model
      *
      * @return string|null
      */
-    public function number()
+    public function getNumber()
     {
         return (string) $this->element->ID ?: null;
     }
@@ -26,7 +26,7 @@ class TaxNumber extends Model
      *
      * @return string|null
      */
-    public function type()
+    public function getType()
     {
         if (empty($this->element->ID)) {
             return null;

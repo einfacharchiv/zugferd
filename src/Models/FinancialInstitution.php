@@ -16,7 +16,7 @@ class FinancialInstitution extends Model
      *
      * @return string|null
      */
-    public function bic()
+    public function getBic()
     {
         return (string) $this->element->BICID ?: null;
     }
@@ -26,7 +26,7 @@ class FinancialInstitution extends Model
      *
      * @return string|null
      */
-    public function name()
+    public function getName()
     {
         return (string) $this->element->Name ?: null;
     }

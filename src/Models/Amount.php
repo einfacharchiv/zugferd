@@ -9,7 +9,7 @@ class Amount extends Model
      *
      * @return float|null
      */
-    public function amount()
+    public function getAmount()
     {
         return !empty($this->element) ? (float) $this->element : null;
     }
@@ -19,7 +19,7 @@ class Amount extends Model
      *
      * @return string|null
      */
-    public function currency()
+    public function getCurrency()
     {
         if (empty($this->element)) {
             return null;
